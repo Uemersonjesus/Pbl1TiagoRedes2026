@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VAIJUNTO</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <h1>VAIJUNTO</h1>
+  <div id="quemEstaLogado" class="hidden">
+    <span id="loginAtual"></span>
+    <button id="btnSair" class="botao-secundario">Sair</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- Tela de login -->
+  <section id="telaLogin" class="cartao hidden">
+    <h2>Entrar</h2>
+    <p class="ajuda">
+      O primeiro login com um par login/senha cadastra o usuario
+      automaticamente (nao ha tela de cadastro separada).
+    </p>
+    <form id="formLogin">
+      <label>Login
+        <input type="text" id="loginLogin" autocomplete="username" required>
+      </label>
+      <label>Senha
+        <input type="password" id="loginSenha" autocomplete="current-password" required>
+      </label>
+      <button type="submit">Entrar</button>
+    </form>
+    <p id="erroLogin" class="mensagem-erro hidden"></p>
+  </section>
+
+  <!-- Tela principal (pos-login) -->
+  <section id="telaApp" class="hidden">
+
+    <nav class="abas">
+      <button class="aba ativa" data-aba="motorista">Motorista</button>
+      <button class="aba" data-aba="passageiro">Passageiro</button>
+    </nav>
+
+    <!-- ===================== MOTORISTA ===================== -->
+    <section id="painelMotorista" class="painel-aba">
+
+      <div class="cartao">
+        <h2>Publicar carona</h2>
+        <form id="formPublicar">
+          <label>Rota (cidades em ordem, separadas por virgula)
+            <input type="text" id="pubRota" placeholder="Salvador, Feira de Santana, Vitoria da Conquista" required>
+          </label>
+          <div class="linha-campos">
+            <label>Data
+              <input type="date" id="pubData" required>
+            </label>
+            <label>Hora
+              <input type="time" id="pubHora" required>
+            </label>
+            <label>Assentos
+              <input type="number" id="pubAssentos" min="1" step="1" value="1" required>
+            </label>
+            <label>Preco por trecho (R$)
+              <input type="number" id="pubPreco" min="0" step="0.01" value="0.00" required>
+            </label>
+          </div>
+          <button type="submit">Publicar</button>
+        </form>
+        <p id="msgPublicar" class="mensagem hidden"></p>
+      </div>
+
+      <div class="cartao">
+        <div class="cartao-cabecalho">
+          <h2>Minhas caronas</h2>
+          <button id="btnAtualizarCaronas" class="botao-secundario">Atualizar</button>
+        </div>
+        <div id="listaCaronas" class="lista"></div>
+      </div>
+
+    </section>
+
+    <!-- ===================== PASSAGEIRO ===================== -->
+    <section id="painelPassageiro" class="painel-aba hidden">
+
+      <div class="cartao">
+        <h2>Buscar itinerarios</h2>
+        <form id="formBuscar">
+          <div class="linha-campos">
+            <label>Origem
+              <input type="text" id="buscaOrigem" required>
+            </label>
+            <label>Destino
+              <input type="text" id="buscaDestino" required>
+            </label>
+            <label>Data
+              <input type="date" id="buscaData" required>
+            </label>
+          </div>
+          <button type="submit">Buscar</button>
+        </form>
+        <p id="msgBuscar" class="mensagem hidden"></p>
+        <div id="listaItinerarios" class="lista"></div>
+      </div>
+
+      <div class="cartao">
+        <div class="cartao-cabecalho">
+          <h2>Minhas reservas</h2>
+          <button id="btnAtualizarReservas" class="botao-secundario">Atualizar</button>
+        </div>
+        <div id="listaReservas" class="lista"></div>
+      </div>
+
+    </section>
+
+  </section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

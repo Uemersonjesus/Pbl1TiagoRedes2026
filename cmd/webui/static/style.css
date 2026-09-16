@@ -1,0 +1,259 @@
+:root {
+  color-scheme: light;
+  --cor-fundo: #f4f6f8;
+  --cor-cartao: #ffffff;
+  --cor-borda: #dde3ea;
+  --cor-texto: #1f2937;
+  --cor-texto-fraco: #6b7280;
+  --cor-primaria: #2563eb;
+  --cor-primaria-escura: #1d4ed8;
+  --cor-erro: #b91c1c;
+  --cor-erro-fundo: #fee2e2;
+  --cor-sucesso: #15803d;
+  --cor-sucesso-fundo: #dcfce7;
+  --cor-cancelada: #9ca3af;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+}
+
+.hidden { display: none !important; }
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  background: var(--cor-primaria-escura);
+  color: white;
+}
+
+.topbar h1 {
+  font-size: 1.25rem;
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+#quemEstaLogado {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.cartao {
+  background: var(--cor-cartao);
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.cartao h2 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+
+.cartao-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ajuda {
+  color: var(--cor-texto-fraco);
+  font-size: 0.85rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.linha-campos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.linha-campos label {
+  flex: 1 1 140px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--cor-texto-fraco);
+}
+
+input {
+  font: inherit;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  color: var(--cor-texto);
+}
+
+input:focus {
+  outline: 2px solid var(--cor-primaria);
+  outline-offset: 1px;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  padding: 0.55rem 1rem;
+  background: var(--cor-primaria);
+  color: white;
+  align-self: flex-start;
+}
+
+button:hover { background: var(--cor-primaria-escura); }
+
+.botao-secundario {
+  background: transparent;
+  border: 1px solid var(--cor-borda);
+  color: var(--cor-texto);
+}
+
+.botao-secundario:hover {
+  background: var(--cor-fundo);
+}
+
+.botao-perigo {
+  background: transparent;
+  border: 1px solid var(--cor-erro);
+  color: var(--cor-erro);
+}
+
+.botao-perigo:hover {
+  background: var(--cor-erro-fundo);
+}
+
+.mensagem {
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  background: var(--cor-sucesso-fundo);
+  color: var(--cor-sucesso);
+  font-size: 0.9rem;
+}
+
+.mensagem-erro {
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  background: var(--cor-erro-fundo);
+  color: var(--cor-erro);
+  font-size: 0.9rem;
+}
+
+.abas {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.aba {
+  background: transparent;
+  color: var(--cor-texto-fraco);
+  border: 1px solid var(--cor-borda);
+  border-radius: 999px;
+  padding: 0.4rem 1.1rem;
+}
+
+.aba.ativa {
+  background: var(--cor-primaria);
+  color: white;
+  border-color: var(--cor-primaria);
+}
+
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.item {
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+}
+
+.item-cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.item-titulo {
+  font-weight: 600;
+}
+
+.item-acoes {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.item-acoes button {
+  padding: 0.3rem 0.7rem;
+  font-size: 0.85rem;
+}
+
+.selo {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: var(--cor-sucesso-fundo);
+  color: var(--cor-sucesso);
+}
+
+.selo.cancelada {
+  background: #f3f4f6;
+  color: var(--cor-cancelada);
+}
+
+.pernas {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.85rem;
+  color: var(--cor-texto-fraco);
+}
+
+.trechos-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.trechos-tabela th, .trechos-tabela td {
+  text-align: left;
+  padding: 0.3rem 0.5rem;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.vazio {
+  color: var(--cor-texto-fraco);
+  font-size: 0.9rem;
+}

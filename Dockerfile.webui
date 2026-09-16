@@ -1,0 +1,11 @@
+FROM golang:1.23-alpine AS build
+WORKDIR /src
+COPY go.mod ./
+COPY internal ./internal
+COPY cmd/webui ./cmd/webui
+RUN CGO_ENABLED=0 GOOS=linux go build -o /out/vaijunto-webui ./cmd/webui
+
+FROM alpine:3.20
+COPY --from=build /out/vaijunto-webui /usr/local/bin/vaijunto-webui
+EXPOSE 8080
+ENTRYPOINT ["/usr/local/bin/vaijunto-webui"]

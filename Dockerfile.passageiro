@@ -1,0 +1,10 @@
+FROM golang:1.23-alpine AS build
+WORKDIR /src
+COPY go.mod ./
+COPY internal ./internal
+COPY cmd/passageiro ./cmd/passageiro
+RUN CGO_ENABLED=0 GOOS=linux go build -o /out/vaijunto-passageiro ./cmd/passageiro
+
+FROM alpine:3.20
+COPY --from=build /out/vaijunto-passageiro /usr/local/bin/vaijunto-passageiro
+ENTRYPOINT ["/usr/local/bin/vaijunto-passageiro"]

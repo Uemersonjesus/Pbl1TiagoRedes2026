@@ -1,0 +1,54 @@
+# Uso local (mesma maquina, para testar rapido antes de ir ao laboratorio):
+#   docker compose up --build -d server webui
+#   # abra http://localhost:8080 no navegador (interface web), ou:
+#   docker compose run --rm motorista
+#   docker compose run --rm passageiro
+#
+# No laboratorio (LARSID/LADICA), o servidor e cada cliente rodam em
+# CONTEINERES EM MAQUINAS DISTINTAS — nesse caso nao se usa este arquivo
+# (ele so orquestra containers na mesma maquina); veja o README, secao
+# "Emulacao em multiplos computadores", para o comando `docker run`
+# equivalente apontando para o IP real da maquina do servidor.
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    ports:
+      - "9000:9000"
+    environment:
+      - VAIJUNTO_ADDR=:9000
+
+  webui:
+    build:
+      context: .
+      dockerfile: Dockerfile.webui
+    ports:
+      - "8080:8080"
+    depends_on:
+      - server
+    environment:
+      - VAIJUNTO_ADDR=server:9000
+      - WEBUI_ADDR=:8080
+
+  motorista:
+    build:
+      context: .
+      dockerfile: Dockerfile.motorista
+    depends_on:
+      - server
+    environment:
+      - VAIJUNTO_ADDR=server:9000
+    stdin_open: true
+    tty: true
+
+  passageiro:
+    build:
+      context: .
+      dockerfile: Dockerfile.passageiro
+    depends_on:
+      - server
+    environment:
+      - VAIJUNTO_ADDR=server:9000
+    stdin_open: true
+    tty: true

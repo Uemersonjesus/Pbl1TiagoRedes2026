@@ -1,0 +1,14 @@
+# Build multi-stage: compila um binario estatico e o executa numa imagem
+# minima, sem qualquer dependencia externa ao runtime da linguagem.
+FROM golang:1.23-alpine AS build
+WORKDIR /src
+COPY go.mod ./
+COPY internal ./internal
+COPY cmd/server ./cmd/server
+RUN CGO_ENABLED=0 GOOS=linux go build -o /out/vaijunto-server ./cmd/server
+
+FROM alpine:3.20
+COPY --from=build /out/vaijunto-server /usr/local/bin/vaijunto-server
+EXPOSE 9000
+ENV VAIJUNTO_ADDR=:9000
+ENTRYPOINT ["/usr/local/bin/vaijunto-server"]
